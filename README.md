@@ -1,7 +1,7 @@
-Theme for NodeBB using Google Material Design
-=========================
+## nodebb-theme-antergos-two
+##### Theme for NodeBB using Google Material Design
 
-## Installation
+### Installation
 
     * Install this theme using the "Plugins" page in NodeBB ACP
     
@@ -10,10 +10,9 @@ Theme for NodeBB using Google Material Design
     * Restart NodeBB
 
 
-## Credits
+### Credits
 
-Animate.css - http://daneden.me/animate
-
-Waves by Alfiana E. Sibuea http://fian.my.id/Waves 
-
-nodebb-theme-persona by [NodeBB](https://github.com/nodebb/)
+* Animate.css - http://daneden.me/animate
+* Waves by Alfiana E. Sibuea http://fian.my.id/Waves 
+* nodebb-theme-material by @pichalite
+* nodebb-theme-persona by @NodeBB

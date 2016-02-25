@@ -1,6 +1,6 @@
 {
-  "name": "nodebb-theme-material",
-  "version": "2.4.9",
+  "name": "nodebb-theme-antergos-two",
+  "version": "1.0.0",
   "nbbpm": {
     "compatibility": "^0.9.0"
   },
@@ -8,7 +8,7 @@
   "main": "theme.less",
   "repository": {
     "type": "git",
-    "url": "https://github.com/pichalite/nodebb-theme-material"
+    "url": "https://github.com/antergos/nodebb-theme-antergos-two"
   },
   "keywords": [
     "nodebb",
@@ -18,10 +18,10 @@
     "themes"
   ],
   "author": {
-    "name": "pichalite",
-    "email": "pichalite.com@gmail.com"
+    "name": "antergos",
+    "email": "dev@antergos.com"
   },
   "bugs": {
-    "url": "https://github.com/pichalite/nodebb-theme-material/issues"
+    "url": "https://github.com/antergos/nodebb-theme-antergos-two/issues"
   }
 }
