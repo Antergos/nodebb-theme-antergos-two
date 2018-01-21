@@ -1,14 +1,14 @@
-<div id="move-post-modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true" data-backdrop="none">
+<div id="move-post-modal" tabindex="-1" role="dialog" aria-labelledby="move_post_label" aria-hidden="true" data-backdrop="none">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h4>[[topic:move_post]]</h4>
+				<h4 id="move_post_label">[[topic:move_post]]</h4>
 			</div>
 			<div class="modal-body">
 				<div class="form-group">
-					<label for="topicId">Topic ID</label>
-					<input id="topicId" type="text" class="form-control" placeholder="Enter topic ID"><br/>
+					<label for="topicId">[[topic:topic_id]]</label>
+					<input id="topicId" type="text" class="form-control" placeholder="[[topic:topic_id_placeholder]]"><br/>
 				</div>
 			</div>
 

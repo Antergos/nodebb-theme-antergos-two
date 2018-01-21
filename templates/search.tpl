@@ -61,6 +61,13 @@
 						</div>
 
 						<div class="form-group post-search-item">
+							<label>[[search:has-tags]]</label>
+							<div class="fg-line">
+								<input type="text" class="form-control" id="has-tags">
+							</div>
+						</div>
+
+						<div class="form-group post-search-item">
 							<label>[[search:reply-count]]</label>
 							<div class="row">
 								<div class="col-md-6">
@@ -113,6 +120,7 @@
 								<div class="col-md-6">
 									<div class="fg-line">
 										<select id="post-sort-by" class="form-control">
+											<option value="relevance">[[search:relevance]]</option>
 											<option value="timestamp">[[search:post-time]]</option>
 											<option value="teaser.timestamp">[[search:last-reply-time]]</option>
 											<option value="topic.title">[[search:topic-title]]</option>
@@ -140,7 +148,7 @@
 							<div id="show-results-as">
 								<label class="radio radio-inline active">
 									<input type="radio" name="options" id="show-as-posts" autocomplete="off" checked>
-									<i class="input-helper"></i> 
+									<i class="input-helper"></i>
 									[[global:posts]]
 								</label>
 								<label class="radio radio-inline">
@@ -151,8 +159,8 @@
 							</div>
 						</div>
 
-						<a id="save-preferences" href="#">[[search:save-preferences]]</a>
-						<a id="clear-preferences" href="#">[[search:clear-preferences]]</a>
+						<a id="save-preferences" class="btn btn-sm btn-default" href="#">[[search:save-preferences]]</a>
+						<a id="clear-preferences" class="btn btn-sm btn-default" href="#">[[search:clear-preferences]]</a>
 					</div>
 				</div>
 			</form>
@@ -192,8 +200,14 @@
 					<div class="lv-footer">
 					<div class="lv-actions">
 						<li class="lv-small">
-							<a href="{config.relative_path}/user/{posts.user.userslug}"><img class="user-picture" title="{posts.user.username}" src="{posts.user.picture}"/></a>
-							<a href="{config.relative_path}/category/{posts.category.slug}">[[global:posted_in, {posts.category.name}]] <i class="fa {posts.category.icon}"></i></a> <span class="timeago" title="{posts.relativeTime}"></span>
+							<a href="{config.relative_path}/user/{posts.user.userslug}">
+								<!-- IF posts.user.picture -->
+								<img class="user-picture" title="{posts.user.username}" src="{posts.user.picture}"/>
+								<!-- ELSE -->
+								<div class="user-icon" style="background-color: {posts.user.icon:bgColor};">{posts.user.icon:text}</div>
+								<!-- ENDIF posts.user.picture -->
+							</a>
+							<a href="{config.relative_path}/category/{posts.category.slug}">[[global:posted_in, {posts.category.name}]] <i class="fa {posts.category.icon}"></i></a> <span class="timeago" title="{posts.timestampISO}"></span>
 						</li>
 					</div>
 					</div>

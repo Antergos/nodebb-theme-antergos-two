@@ -6,7 +6,7 @@
 }
 
 .search .listview .lv-footer {
-    margin-top: 0px;
+    margin-top: 0;
 }
 
 #results .user-picture {
@@ -16,7 +16,7 @@
 
 #results .lv-header-alt {
 	background-color: inherit;
-	padding: 0px;
+	padding: 0;
 	border: none;
 }
 
@@ -26,7 +26,7 @@
 
 @media screen and (min-width: @screen-sm-min) {
 	.search #results .card .card-body.card-padding {
-		padding-bottom: 0px;
+		padding-bottom: 0;
 		padding-top: 10px;
 	}
 }
@@ -38,7 +38,7 @@
 	}
 
 	.lv-item.media {
-		padding: 0px;
+		padding: 0;
 	}
 }
 
@@ -50,8 +50,12 @@
 	margin: 0;
 	padding: 30px 0;
 	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, transparent), color-stop(1, white));
-	background-image: -webkit-linear-gradient(top, rgba(255,255,255,0), white);
-	background-image: -moz-linear-gradient(top, rgba(255,255,255,0), white);
+	background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, 0), white);
+	background-image: -moz-linear-gradient(top, rgba(255, 255, 255, 0), white);
 	background-image: -ms-linear-gradient(top, transparent, white);
 	background-image: -o-linear-gradient(top, transparent, white);
+}
+
+.user-picture {
+	.user-avatar (30px);
 }

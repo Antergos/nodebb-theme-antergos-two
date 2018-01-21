@@ -19,6 +19,11 @@
 
 		&.card-padding {
 			padding: 15px 25px;
+
+			@media (max-width: @screen-xs-max)
+			{
+				padding: 15px;
+			}
 		}
 	}
 
@@ -27,9 +32,16 @@
 	}
 }
 
-.account.settings .card .card-header {
-	font-size: 16px;
-	font-weight: 500;
+.account.settings {
+	.card .card-header {
+		font-size: 16px;
+		font-weight: 500;
+	}
+
+	.form-control {
+		color: inherit;
+		border-bottom: @input-border-bottom;
+	}
 }
 
 .account-username-box {
@@ -42,28 +54,11 @@
 }
 
 .status {
-
 	display: inline-block;
 	border-radius: 50%;
 	width: 11px;
 	height: 11px;
 	vertical-align: middle;
-
-	&.online {
-		background-color: #060;
-	}
-
-	&.away {
-		background-color: #cc0;
-	}
-
-	&.dnd {
-		background-color: #900;
-	}
-
-	&.offline {
-		background-color: gray;
-	}
 }
 
 .edit-account .input-group {
@@ -94,6 +89,7 @@
     width: 120px;
     font-size: 5rem;
     border: 3px solid #fff;
+    line-height: 120px;
 
     @media (max-width: @screen-xs-max) {
     	left: 50%;
@@ -105,20 +101,25 @@
 
 	.card-footer {
 		position: relative;
-		padding: 20px 20px 20px 120px;
+		padding: 20px 20px 20px 30px;
+
+		hr {
+			border: @account-hr-border;
+			margin: 0;
+		}
 
 		@media (max-width: @screen-xs-max) {
 			padding: inherit;
 
 			hr {
-				border: 1px solid #fff;
+				margin-top: 20px;
 			}
 		}
 
 		.status {
-			left: 143px;
+			left: 140px;
 		    position: absolute;
-		    top: 0px;
+		    top: 0;
 		    border: 1px solid #fff;
 		    height: 18px;
 		    width: 18px;
@@ -131,20 +132,16 @@
 		}
 
 		.user-info {
-			float: left;
-			position: absolute;
-    		top: -50px;
-    		margin-left: 60px;
 
 			h3 {
 				color: #fff;
 				font-size: 20px;
 
 				@media (max-width: @screen-xs-max) {
-					color: #000;
+					color: @body-color;
 					margin-top: 10px;
 					font-size: 16px;
-					text-align: left;
+					text-align: center;
 					margin-bottom: 2px;
 				}
 			}
@@ -154,42 +151,22 @@
 
 				@media (max-width: @screen-xs-max) {
 					font-size: 11px;
-					text-align: left;
-					margin-top: 0px;
-					margin-bottom: 0px;
+					text-align: center;
+					margin-top: 0;
+					margin-bottom: 0;
 				}
 			}
 
 			@media (max-width: @screen-xs-max) {
-			    position: absolute;
-			    top: 25px;
-			    left: 15px;
-				min-width: 120px;
-				margin-left: 0px;
+			    margin-top: 40px;
+			}
+
+			@media (min-width: @screen-md-min) {
+				position: absolute;
+			    top: -50px;
+			    left: 175px;
 			}
 		}
-
-		#follow-btn {
-		    position: absolute;
-		    left: 70px;
-		    top: 35px;
-
-		    @media (max-width: @screen-xs-max) {
-		    	right: 15px;
-		    	left: inherit;
-		    }
-		}
-
-		#unfollow-btn {
-		    position: absolute;
-		    left: 65px;
-		    top: 35px;
-
-		    @media (max-width: @screen-xs-max) {
-		    	right: 15px;
-		    	left: inherit;
-		    }
-		}	
 
 		.account-stats {
 			display: inline-block;
@@ -200,13 +177,12 @@
 				min-width: 100px;
 
 				@media (max-width: @screen-xs-max) {
-					padding: 10px 0px;
+					padding: 10px 0;
 				}
 			}
 
 			.stat-label {
 				font-size: 14px;
-				color: #333;
 			}
 
 			.human-readable-number {
@@ -215,18 +191,21 @@
 			}
 
 			@media (max-width: @screen-xs-max) {
-				margin-top: 80px;
+				margin-top: 20px;
 				margin-bottom: 10px;
 			}
 		}
-	}
-}
 
-.account .cover .controls .fa {
-	background-color: #333;
-	opacity: 1;
-	margin: 15px;
-	padding: 5px;
+		[component="account/chat"], [component="account/follow"], [component="account/unfollow"] {
+			float: left;
+			margin: 15px 5px 0;
+
+			@media (max-width: @screen-xs-max) {
+				float: inherit;
+				margin: 0 5px 15px 5px;
+			}
+		}
+	}
 }
 
 .account .cover {
@@ -323,7 +302,7 @@
 
 	@media (max-width: @screen-xs-max) {
 		right: 30px;
-	}	
+	}
 }
 
 .account-picture-block .user-profile-picture {
@@ -334,8 +313,8 @@
 	line-height: 128px;
 }
 
-.account.change-username #change-username, 
-.account.change-password #change-password, 
+.account.change-username #change-username,
+.account.change-password #change-password,
 .account.change-email #change-email {
 	padding: 10px;
 }
@@ -348,5 +327,49 @@
 		margin-top: 10px;
 		padding-right: 3px;
 		padding-left: 5px;
+	}
+}
+
+.account {
+	&.account-info {
+		.ban-history {
+			padding-left: 0;
+
+			.timestamp {
+				font-weight: bold;
+			}
+
+			.expiry {
+				font-size: 11px;
+			}
+		}
+
+		.recent-flags {
+			padding-left: 0;
+
+			.title {
+				font-weight: bold;
+			}
+
+			.timestamp {
+				font-size: 11px;
+			}
+		}
+
+		.moderation-history {
+			.timeline .frame .timeline-badge {
+				background: none;
+				border: none;
+				left: 5px;
+			}
+
+			.user-avatar {
+	            .user-avatar(30px);
+	        }
+
+	        .user-icon {
+	            .user-icon(30px, 1.6rem);
+	        }
+		}
 	}
 }

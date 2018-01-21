@@ -10,11 +10,23 @@
 		},
 		{
 			"hook": "filter:config.get", "method": "getConfig"
+		},
+		{
+			"hook": "filter:user.customSettings", "method": "customSettings"
+		},
+		{
+			"hook": "action:user.saveSettings", "method": "saveSettings"
+		},
+		{
+			"hook": "filter:user.getSettings", "method": "getSettings"
 		}
 	],
 	"scripts": [
 		"lib/material.js",
 		"lib/vendor/waves.min.js"
+	],
+	"acpScripts": [
+		"lib/admin.js"
 	],
 	"templates": "./templates"
 }

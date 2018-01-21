@@ -21,7 +21,7 @@
             <!-- ENDIF brand:logo -->
 
             <!-- IF config.showSiteTitle -->
-			<a class="title" href="{relative_path}/">
+			<a class="title" href="<!-- IF title:url -->{title:url}<!-- ELSE -->{relative_path}/<!-- ENDIF title:url -->">
 				{title}
 			</a>
 			<!-- ENDIF config.showSiteTitle -->
@@ -29,11 +29,11 @@
 
         <!-- IF config.menuInHeader -->
         <li class="hidden-xs">
-            <ul class="header-menu"> 
+            <ul class="header-menu" id="main-nav">
                 <!-- BEGIN navigation -->
                 <!-- IF function.displayMenuItem, @index -->
                 <li class="{navigation.class}">
-                    <a href="{relative_path}{navigation.route}" title="{navigation.title}" id="{navigation.id}"<!-- IF navigation.properties.targetBlank --> target="_blank"<!-- ENDIF navigation.properties.targetBlank -->>
+                    <a class="navigation-link" href="{navigation.route}" title="{navigation.title}" <!-- IF navigation.id -->id="{navigation.id}"<!-- ENDIF navigation.id --><!-- IF navigation.properties.targetBlank --> target="_blank"<!-- ENDIF navigation.properties.targetBlank -->>
                         <!-- IF navigation.iconClass -->
                         <i class="fa fa-fw {navigation.iconClass}"></i>
                         <!-- ENDIF navigation.iconClass -->
@@ -47,7 +47,7 @@
 
         <li class="pull-right">
         <ul class="top-menu">
-            <li class="nav navbar-nav pagination-block invisible visible-lg visible-md">
+            <li class="nav navbar-nav pagination-block visible-lg visible-md">
                 <div class="dropdown">
                     <i class="fa fa-angle-double-up pointer fa-fw pagetop"></i>
                     <i class="fa fa-angle-up pointer fa-fw pageup"></i>
@@ -64,7 +64,9 @@
                     </div>
 
                     <ul class="dropdown-menu" role="menu">
-                        <input type="text" class="form-control" id="indexInput" placeholder="[[global:pagination.enter_index]]">
+                        <li>
+                            <input type="text" class="form-control" id="indexInput" placeholder="[[global:pagination.enter_index]]">
+                        </li>
                     </ul>
                 </div>
             </li>
@@ -76,7 +78,7 @@
             </li>
             <!-- IF config.searchEnabled -->
             <li>
-                <form id="search-form" class="hidden-xs" role="search" method="GET" action="">
+                <form id="search-form" class="hidden-xs" role="search" method="GET">
                     <div class="hidden" id="search-fields">
                         <div class="form-group">
                             <div class="fg-line">
@@ -85,11 +87,11 @@
                         </div>
                         <button type="submit" class="btn btn-default hide">[[global:search]]</button>
                     </div>
-                    <button id="search-button" type="button" class="btn btn-link"><i class="fa fa-search fa-fw" title="[[global:header.search]]"></i></button>
+                    <button id="search-button" type="button" class="btn btn-link"><i class="fa fa-search fa-fw"></i></button>
                 </form>
             </li>
             <!-- ENDIF config.searchEnabled -->
-			
+
 			<!-- IF config.loggedIn -->
             <li class="notifications dropdown" component="notifications">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="notif_dropdown">
@@ -120,10 +122,12 @@
                 <div class="dropdown-menu dropdown-menu-md pull-right" aria-labelledby="chat_dropdown">
                     <div class="listview">
                         <div class="lv-body c-overflow chat-list" component="chat/list">
-                            <a href="#"><i class="fa fa-refresh fa-spin"></i> [[global:chats.loading]]</a> 
+                            <i class="fa fa-refresh fa-spin"></i> [[global:chats.loading]]
                         </div>
                         <div class="lv-footer">
-                            <a href="{relative_path}/chats">[[modules:chat.see_all]]</a>
+                            <a href="#" class="mark-all-read" component="chats/mark-all-read">[[modules:chat.mark_all_read]]</a>
+                            <hr />
+                            <a href="{relative_path}/user/{user.userslug}/chats">[[modules:chat.see_all]]</a>
                         </div>
                     </div>
                 </div>
@@ -132,11 +136,8 @@
 
             <li id="user_label" class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="user_dropdown">
-                    <!-- IF user.picture -->
-                    <img component="header/userpicture" src="{user.picture}" alt="{user.username}" class="user-picture" id="user-header-picture" />
-                    <!-- ELSE -->
-                    <div component="header/usericon" class="user-icon" style="background-color: {user.icon:bgColor};">{user.icon:text}</div>
-                    <!-- ENDIF user.picture -->
+                    <img component="header/userpicture" src="{user.picture}" alt="{user.username}" class="user-picture" id="user-header-picture"<!-- IF !user.picture --> style="display:none;"<!-- ENDIF !user.picture --> />
+                    <div component="header/usericon" class="user-icon" style="background-color: {user.icon:bgColor};<!-- IF user.picture -->display:none;<!-- ENDIF user.picture -->">{user.icon:text}</div>
                 </a>
                 <ul id="user-control-list" component="header/usercontrol" class="dropdown-menu pull-right" aria-labelledby="user_dropdown">
                     <li>
@@ -166,6 +167,17 @@
                         </a>
                     </li>
                     <li role="presentation" class="divider"></li>
+                    <li>
+						<a component="header/profilelink/edit" href="{relative_path}/user/{user.userslug}/edit">
+							<i class="fa fa-fw fa-edit"></i><span> [[user:edit-profile]]</span>
+						</a>
+					</li>
+					<li>
+						<a component="header/profilelink/settings" href="{relative_path}/user/{user.userslug}/settings">
+							<i class="fa fa-fw fa-gear"></i><span> [[user:settings]]</span>
+						</a>
+					</li>
+					<li role="presentation" class="divider"></li>
                     <li component="user/logout">
                         <a href="#"><i class="fa fa-fw fa-sign-out"></i><span> [[global:logout]]</span></a>
                     </li>
@@ -188,10 +200,10 @@
             </ul>
         </li>
     </ul>
-    
+
 </header>
 </div>
-<section id="main" class="<!-- IF menuInHeader -->visible-xs<!-- ENDIF menuInHeader -->">
+<section id="main" <!-- IF menuInHeader -->class="visible-xs"<!-- ENDIF menuInHeader -->>
     <aside id="sidebar">
         <div class="sidebar-inner">
             <div class="si-inner">
@@ -202,7 +214,7 @@
                             <label for="tw-switch" class="ts-helper"></label>
                         </div>
                     </li>
-                    <!-- IF !config.loggedIn -->  
+                    <!-- IF !config.loggedIn -->
                     <!-- IF allowRegistration -->
                     <li class="visible-xs">
                         <a href="{relative_path}/register">
@@ -226,7 +238,7 @@
 					<!-- BEGIN navigation -->
 					<!-- IF function.displayMenuItem, @index -->
 					<li class="{navigation.class}">
-						<a href="{relative_path}{navigation.route}" title="{navigation.title}" id="{navigation.id}" target="{navigation.properties.target}">
+						<a class="navigation-link" href="{navigation.route}" title="{navigation.title}" <!-- IF navigation.id -->id="{navigation.id}"<!-- ENDIF navigation.id --><!-- IF navigation.properties.targetBlank --> target="_blank"<!-- ENDIF navigation.properties.targetBlank -->>
 							<!-- IF navigation.iconClass -->
 							<i class="fa fa-fw {navigation.iconClass}"></i>
 							<!-- ENDIF navigation.iconClass -->

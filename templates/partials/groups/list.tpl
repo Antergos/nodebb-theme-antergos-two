@@ -3,23 +3,22 @@
     <div class="card">
         <div class="card-header ch-alt">
             <div>{groups.displayName}</div>
-            <small>{groups.description}</small>
         </div>
-        <div class="card-body group-cover list-cover" style="<!-- IF groups.cover:url -->background-image: url({groups.cover:url});<!-- ENDIF groups.cover:url -->">
-        </div>
+        <a href="{config.relative_path}/groups/{groups.slug}" class="card-body group-cover list-cover" style="<!-- IF groups.cover:thumb:url -->background-image: url({groups.cover:thumb:url});<!-- ENDIF groups.cover:thumb:url -->">
+        </a>
         <div class="card-body card-padding">
             <ul class="members">
-                <!-- BEGIN members -->
+                <!-- BEGIN groups.members -->
                 <li>
                     <a href="{config.relative_path}/user/{groups.members.userslug}">
                         <!-- IF groups.members.picture -->
-                        <img src="{groups.members.picture}" title="{groups.members.userslug}" />
+                        <img class="user-avatar" src="{groups.members.picture}" alt="{groups.members.username}" title="{groups.members.username}" />
                         <!-- ELSE -->
                         <div class="user-icon" style="background-color: {groups.members.icon:bgColor};">{groups.members.icon:text}</div>
                         <!-- ENDIF groups.members.picture -->
                     </a>
                 </li>
-                <!-- END members -->
+                <!-- END groups.members -->
                 <!-- IF groups.truncated -->
                 <li class="truncated"><i class="fa fa-ellipsis-h"></i></li>
                 <!-- ENDIF groups.truncated -->

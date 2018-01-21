@@ -1,27 +1,29 @@
 .groups {
 	.input-group {
 		#search-button {
-			padding-left: 0px;
+			padding-left: 0;
+			position: relative;
+		    left: -20px;
+		    z-index: 2;
+		    vertical-align: middle;
 		}
 	}
 
 	.fg-line {
-		padding-right: 0px;
+		padding-right: 0;
 	}
 
 	&.list {
 		.members {
 			padding-left: 0;
-			margin-bottom: 0px;
-
-			img {
-				width: 32px;
-				height: 32px;
-				border-radius: 50%;
-			}
+			margin-bottom: 0;
 
 			li {
 				display: inline;
+			}
+			
+			.user-icon, .user-avatar {
+				.user-icon(32px, 1.4rem);
 			}
 		}
 
@@ -29,8 +31,11 @@
 			min-height: 150px;
 		}
 
-		.list-cover:hover {
-			cursor: pointer;
+		.list-cover {
+			display: block;
+			&:hover {
+				cursor: pointer;
+			}
 		}
 
 		.card-footer {
@@ -39,18 +44,26 @@
 	}
 
 	&.details {
-		.members img, .pending img, .invited img {
-			width: 32px;
-			height: 32px;
-			line-height: 32px;
-			border-radius: 50%;
+		
+		.table {
+			margin-bottom: 0;
+			
+			>tbody {
+				>tr:not(:first-child)>td {
+					border-top: 1px solid @border-color;
+				}
+				
+				>tr:first-child>td {
+					border: none;
+				}
+			}
 		}
 	}
 }
 
 .group-details {
 	h2 {
-		margin-top: 0px;
+		margin-top: 0;
 		font-size: 25px;
 	}
 
@@ -61,7 +74,7 @@
 
 [component="groups/activity"] {
 	&.card-body.card-padding {
-		padding-top: 0px;
+		padding-top: 0;
 	}
 }
 
@@ -78,16 +91,22 @@
 	}
 
 	.row.groups .col-xs-5 {
-		padding-right: 0px;
-  		padding-left: 0px;
+		padding-right: 5px;
+  		padding-left: 0;
 	}
 
 	.row.groups .col-xs-7 {
-  		padding-left: 0px;
+  		padding-left: 5px;
 	}	
 }
 
 [component="groups/container"] {
+	
+	.card.user-profile-view {
+		margin-right: 15px;
+		margin-left: 15px;
+	}
+	
 	[component="groups/cover"] {
 		background-size: cover;
 		background-repeat: no-repeat;
@@ -95,28 +114,43 @@
 		position: relative;
 		margin-bottom: 1em;
 
-		.change {
-			visibility: hidden;
+	&:hover {
+		.controls {
+			.opacity(0.8);
+		}
+	}
+
+	.controls {
+		text-align: center;
+		height: 200px;
+		line-height: 200px;
+		.opacity(0);
+		.transition(opacity .15s linear);
+		cursor: pointer;
+		pointer-events: none;
+
+		> * {
+			pointer-events: all;
 		}
 
-		&.initialised:hover {
-			.change {
-				.opacity(1);
-				visibility: visible;
-			}
+		.fa {
+			color: white;
+			background-color: #333;
+			opacity: 1;
+			margin: 15px;
+			padding: 5px;
 		}
+	}
 
-		&.active {
+	&.active {
 			&:hover {
 				cursor: move;
 			}
 
-			.instructions {
-				.opacity(1);
-			}
-
-			.change {
-				display: none;
+			.controls {
+				> * {
+					display: none;
+				}
 			}
 
 			.save {
@@ -134,25 +168,20 @@
 			}
 		}
 
-		.change, .save, .indicator {
+		.save, .indicator {
 			display: inline-block;
 			position: absolute;
 			top: 1em;
-			right: 1em;
-			background: rgba(0, 0, 0, 0.2);
+			right: 2em;
+			opacity: 1;
+			background-color: @brand-primary;
 			color: #eee;
 			padding: 0.5em;
-			border-radius: 5px;
 			font-weight: bold;
 
 			&:hover {
 				cursor: pointer;
 			}
-		}
-
-		.change {
-			.opacity(0);
-			.transition(opacity .15s linear);
 		}
 
 		.save {
@@ -162,19 +191,11 @@
 		.indicator {
 			display: none;
 		}
-
-		.instructions {
-			display: inline-block;
-			position: absolute;
-			right: 1em;
-			bottom: 1em;
-			background: rgba(0, 0, 0, 0.2);
-			color: #eee;
-			padding: 0.5em;
-			border-radius: 5px;
-			margin-top: 2em;
-			.opacity(0);
-			.transition(opacity .15s linear);
+	}
+	
+	.card-body.card-padding {
+		@media (min-width: @screen-md-min) {
+			padding: 18px;
 		}
 	}
 }

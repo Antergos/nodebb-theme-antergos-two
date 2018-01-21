@@ -1,36 +1,55 @@
-<div class="col-lg-9">	
-	<div class="panel panel-default">
-		<div class="panel-heading">Material Design Theme Settings</div>
-		<div class="panel-body">
-			<form>
-				<label>Display menu in header
-					<input id="menuInHeader" type="checkbox" data-field="menuInHeader" />
+<div class="row">
+	<div class="col-sm-2 col-xs-12 settings-header">Theme Settings</div>
+	<div class="col-sm-10 col-xs-12">	
+		<form role="form" class="material-settings">
+
+			<div class="checkbox">
+				<label class="mdl-switch mdl-js-switch mdl-js-ripple-effect">
+					<input class="mdl-switch__input" type="checkbox" id="menuInHeader" name="menuInHeader">
+					<span class="mdl-switch__label"><strong>Display menu in header</strong></span>
 				</label>
-				<br />
-				<label>Remove animation on categories page
-					<input id="removeCategoriesAnimation" type="checkbox" data-field="removeCategoriesAnimation" />
+			</div>
+			
+			<div class="checkbox">
+				<label class="mdl-switch mdl-js-switch mdl-js-ripple-effect">
+					<input class="mdl-switch__input" type="checkbox" id="categoriesAsList" name="categoriesAsList">
+					<span class="mdl-switch__label"><strong>Display categories as a list</strong></span>
 				</label>
-				<br />
-				<label>Display subcategories as cards on category page
-					<input id="subCategoriesAsCards" type="checkbox" data-field="subCategoriesAsCards" />
+			</div>
+			
+			<div class="checkbox">
+				<label class="mdl-switch mdl-js-switch mdl-js-ripple-effect">
+					<input class="mdl-switch__input" type="checkbox" id="listSubcategories" name="listSubcategories">
+					<span class="mdl-switch__label"><strong>Display sub categories on categories page (only applies if above option is enabled)</strong></span>
 				</label>
-			</form>
-		</div>
+			</div>
+			
+			<div class="checkbox">
+				<label class="mdl-switch mdl-js-switch mdl-js-ripple-effect">
+					<input class="mdl-switch__input" type="checkbox" id="removeCategoriesAnimation" name="removeCategoriesAnimation">
+					<span class="mdl-switch__label"><strong>Remove animation on categories page (cards only)</strong></span>
+				</label>
+			</div>
+			
+			<div class="checkbox">
+				<label class="mdl-switch mdl-js-switch mdl-js-ripple-effect">
+					<input class="mdl-switch__input" type="checkbox" id="subCategoriesAsCards" name="subCategoriesAsCards">
+					<span class="mdl-switch__label"><strong>Display subcategories as cards on category page</strong></span>
+				</label>
+			</div>
+			
+			<div class="form-group">
+				<label for="skinOption">Select a skin</label>
+				<select id="skinOption" name="skinOption" class="form-control">
+					<option value="default">Default</option>
+					<option value="dark">Dark</option>
+				</select>	
+			</div>
+			
+		</form>
 	</div>
 </div>
-
-<div class="col-lg-3 acp-sidebar">
-	<div class="panel panel-default">
-		<div class="panel-heading">Save Settings</div>
-		<div class="panel-body">
-			<button class="btn btn-primary btn-md" id="save">Save Changes</button>
-			<button class="btn btn-warning btn-md" id="revert">Revert Changes</button>
-		</div>
-	</div>
-</div>
-
-<script>
-	require(['admin/settings'], function(Settings) {
-		Settings.prepare();
-	});
-</script>
+	
+<button id="save" class="floating-button mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
+    <i class="material-icons">save</i>
+</button>

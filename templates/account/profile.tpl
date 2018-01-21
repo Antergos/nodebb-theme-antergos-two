@@ -61,18 +61,6 @@
 			</div>
 			<!-- ENDIF aboutme -->
 
-			<!-- IF ips.length -->
-			<div class="card">
-				<div class="card-header ch-alt">
-					<i class="fa fa-laptop"></i> [[global:recentips]]
-				</div>
-				<div class="card-body card-padding">
-				<!-- BEGIN ips -->
-					<div>{ips.ip}</div>
-				<!-- END ips -->
-				</div>
-			</div>
-			<!-- ENDIF ips.length -->
 		</div>
 		<div class="col-md-8 user-recent-posts">
 			<div class="card">
@@ -83,6 +71,9 @@
 				<div class="alert alert-warning">[[user:has_no_posts]]</div>
 				<!-- ENDIF !posts.length -->
 				<!-- IMPORT partials/posts_list.tpl -->
+				<!-- IF config.usePagination -->
+					<!-- IMPORT partials/paginator.tpl -->
+				<!-- ENDIF config.usePagination -->
 			</div>
 
 		</div>
